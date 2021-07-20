@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitoringExample.Api", "MonitoringExample.Api\MonitoringExample.Api.csproj", "{F8975A90-4714-4A70-8668-99E584B6C9CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5B3A8B4-9A3E-4FE4-AAEF-016F815E4C58}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prometheus", "Prometheus", "{3B8B4C83-F27B-4CBB-AF6B-7F37FD459625}"
+	ProjectSection(SolutionItems) = preProject
+		Prometheus\prometheus\alert.rules.yml = Prometheus\prometheus\alert.rules.yml
+		Prometheus\alertmanager\config.yml = Prometheus\alertmanager\config.yml
+		Prometheus\docker-compose.yml = Prometheus\docker-compose.yml
+		Prometheus\prometheus\prometheus.yml = Prometheus\prometheus\prometheus.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8975A90-4714-4A70-8668-99E584B6C9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8975A90-4714-4A70-8668-99E584B6C9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8975A90-4714-4A70-8668-99E584B6C9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8975A90-4714-4A70-8668-99E584B6C9CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B8B4C83-F27B-4CBB-AF6B-7F37FD459625} = {F5B3A8B4-9A3E-4FE4-AAEF-016F815E4C58}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FA45D0A-8B23-4D20-B110-F9E58D07B185}
+	EndGlobalSection
+EndGlobal
