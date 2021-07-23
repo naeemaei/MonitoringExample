@@ -34,7 +34,7 @@ namespace MonitoringExample.Api.Monitoring
                     _logger.LogInformation($"Start of second: {second}, iterate: {requestCount}");
                     var application = ((Client)Extension.RandomGenerator(1, 5));
 
-                    var endpoint = (Endpoints)Extension.RandomGenerator(1, 4);
+                    var endpoint = Extension.GenerateRandomEndpoint();
 
                     var service = Extension.GenerateRandomExternalService(requestCount);
 
