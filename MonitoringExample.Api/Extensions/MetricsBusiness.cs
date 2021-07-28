@@ -39,13 +39,13 @@ namespace MonitoringExample.Api.Extensions
             var temp1 = RandomGenerator(0, 50);
             var temp2 = RandomGenerator(0, 50);
 
-            Endpoints endpoint = temp1 + temp2 switch
+            var endpoint = (temp1 + temp2) switch
             {
                 < 45 => Endpoints.Search,
                 < 70 => Endpoints.ProductDetailPage,
                 < 80 => Endpoints.Ordering,
                 < 85 => Endpoints.Payment,
-                _ => (Endpoints)Extension.RandomGenerator(1, 4)
+                _ => (Endpoints)RandomGenerator(1, 4)
             };
 
             return endpoint;

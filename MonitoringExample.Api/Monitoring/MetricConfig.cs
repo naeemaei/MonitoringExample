@@ -7,4 +7,5 @@ public class MetricConfig
 
     public float ErrorPercent { get; set; }
     public int AverageResponseTime { get; set; }
+    public int MetricPerSecond { get; set; }
 }

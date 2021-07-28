@@ -19,7 +19,7 @@ namespace MonitoringExample.Api.Jobs
         protected override async Task OnDoWork(IServiceProvider serviceProvider)
         {
             var dataGenerator = serviceProvider.GetService<IMetricDataGenerator>();
-            dataGenerator.GenerateMetricsTestData(10, 298);
+            dataGenerator.GenerateMetricsTestData(MetricConfig.Instance.MetricPerSecond, 298);
             await Task.Yield();
         }
 
