@@ -1,8 +1,8 @@
  # Monitoring system with prometheus and grafana on docker
  ## In this project we use this tools
  -  ASP.NET Core (Backend API)
- -  Prometheus
- -  Grafana
+ -  Prometheus (TSDB)
+ -  Grafana 
  -  Alert Manager
  -  Node Exporter
  -  Google cAdvisor
