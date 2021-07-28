@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +25,13 @@ namespace MonitoringExample.Api.Monitoring
         }
         public void GenerateMetricsTestData(int count, int seconds)
         {
+            var temp1 = Extension.RandomGenerator(Constants.MinNum, Constants.MidNum);
+            var temp2 = Extension.RandomGenerator(Constants.MinNum, Constants.MidNum);
 
+            if (temp1 + temp2 > 70)
+                count = Convert.ToInt32(count * 1.3);
+            else if (temp1 + temp2 > 50)
+                count = Convert.ToInt32(count * 0.7);
 
             _ = Parallel.For(0, count, delegate (int requestCount)
             //for (int i = 0; i < count; i++)

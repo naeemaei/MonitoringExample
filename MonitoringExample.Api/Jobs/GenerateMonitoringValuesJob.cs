@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MonitoringExample.Api.Monitoring;
 
@@ -7,19 +8,18 @@ namespace MonitoringExample.Api.Jobs
 {
     public class GenerateMonitoringValuesJob : HostedService
     {
-        protected override TimeSpan Interval => TimeSpan.FromMinutes(5);
+        protected override TimeSpan Interval => TimeSpan.FromSeconds(30);
         protected override string JobName => nameof(GenerateMonitoringValuesJob);
 
 
         public GenerateMonitoringValuesJob(IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory) : base(serviceProvider, serviceScopeFactory)
         {
-
         }
 
         protected override async Task OnDoWork(IServiceProvider serviceProvider)
         {
             var dataGenerator = serviceProvider.GetService<IMetricDataGenerator>();
-            dataGenerator.GenerateMetricsTestData(MetricConfig.Instance.MetricPerSecond, 298);
+            dataGenerator.GenerateMetricsTestData(MetricConfig.Instance.MetricPerSecond, 28);
             await Task.Yield();
         }
 
