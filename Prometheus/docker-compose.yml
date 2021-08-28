@@ -17,6 +17,12 @@ services:
       - 8008:80
     networks:
       - back-tier
+  ex2-web-api:
+    image: monitoringexample:dev
+    ports:
+      - 8009:80
+    networks:
+      - back-tier
   prometheus:
     image: prom/prometheus:latest
     volumes:

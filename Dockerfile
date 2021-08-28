@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine-amd64 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine-amd64 AS build
 WORKDIR /src
 COPY ["MonitoringExample.Api/MonitoringExample.Api.csproj", "MonitoringExample.Api/"]
 RUN dotnet restore "MonitoringExample.Api/MonitoringExample.Api.csproj" --disable-parallel

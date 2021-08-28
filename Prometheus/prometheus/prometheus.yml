@@ -1,6 +1,6 @@
 # my global config
 global:
-  scrape_interval: 15s # By default, scrape targets every 15 seconds.
+  scrape_interval:    5s # By default, scrape targets every 15 seconds.
   evaluation_interval: 15s # By default, scrape targets every 15 seconds.
   # scrape_timeout is set to the global default (10s).
 
@@ -50,17 +50,17 @@ scrape_configs:
     static_configs:
       - targets: ["cadvisor:8080"]
 
-  - job_name: "ex1-web-api"
+  - job_name: "web-api"
     scrape_interval: 5s
     dns_sd_configs:
       - names:
-          - "tasks.ex1-web-api"
+          - "tasks.web-api"
         type: "A"
         port: 8008
     metrics_path: /metrics-text
     scheme: http
     static_configs:
-      - targets: ["ex1-web-api:80"]
+      - targets: ["ex1-web-api:80", "ex2-web-api:80"]
 
   - job_name: "node-exporter"
 
