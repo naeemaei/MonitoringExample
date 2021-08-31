@@ -1,24 +1,21 @@
 {
   "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": "-- Grafana --",
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-      }
-    ]
+    "list": [{
+      "builtIn": 1,
+      "datasource": "-- Grafana --",
+      "enable": true,
+      "hide": true,
+      "iconColor": "rgba(0, 211, 255, 1)",
+      "name": "Annotations & Alerts",
+      "type": "dashboard"
+    }]
   },
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1628887049395,
+  "iteration": 1630138073594,
   "links": [],
-  "panels": [
-    {
+  "panels": [{
       "collapsed": false,
       "datasource": null,
       "gridPos": {
@@ -81,16 +78,14 @@
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (instance)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))  / ignoring (instance) group_left sum (increase(application_request_counter[$interval])) * 100",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (instance)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))  / ignoring (instance) group_left sum (increase(application_request_counter[$interval])) * 100",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "{{instance}}",
+        "refId": "A"
+      }],
       "title": " Request Count By Service",
       "type": "piechart"
     },
@@ -143,16 +138,14 @@
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (application)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{application}}",
-          "refId": "A"
-        }
-      ],
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (application)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "{{application}}",
+        "refId": "A"
+      }],
       "title": " Request Count By Application",
       "type": "piechart"
     },
@@ -205,17 +198,15 @@
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (endpoint) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{endpoint}}",
-          "refId": "A"
-        }
-      ],
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (endpoint) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "{{endpoint}}",
+        "refId": "A"
+      }],
       "title": " Request Count By Endpoint",
       "type": "piechart"
     },
@@ -268,17 +259,15 @@
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (service)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (service) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{endpoint}}",
-          "refId": "A"
-        }
-      ],
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (service)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (service) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "{{endpoint}}",
+        "refId": "A"
+      }],
       "title": " Request Count By Service",
       "type": "piechart"
     },
@@ -331,17 +320,15 @@
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (responsecode)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (responsecode) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{responsecode}}",
-          "refId": "A"
-        }
-      ],
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (responsecode)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (responsecode) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "{{responsecode}}",
+        "refId": "A"
+      }],
       "title": " Request Count By HttpStatusCode",
       "type": "piechart"
     },
@@ -394,17 +381,15 @@
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (application)(increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{responsecode}}",
-          "refId": "A"
-        }
-      ],
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (application)(increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+        "format": "time_series",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "{{responsecode}}",
+        "refId": "A"
+      }],
       "title": " Request Percent in Mobile",
       "type": "piechart"
     },
@@ -435,8 +420,7 @@
           "min": 0,
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
+            "steps": [{
                 "color": "green",
                 "value": null
               },
@@ -483,8 +467,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.6",
-      "targets": [
-        {
+      "targets": [{
           "exemplar": false,
           "expr": "sum (increase(application_request_counter{responsecode=\"200\"}[$interval])) / sum (increase(application_request_counter[$interval]))  * 100",
           "format": "time_series",
@@ -560,17 +543,14 @@
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (application)  (rate(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / sum by (application) (rate(application_request_counter{responsecode=\"200\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
-          "interval": "",
-          "legendFormat": "{{ application }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [
-        {
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (application)  (rate(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / sum by (application) (rate(application_request_counter{responsecode=\"200\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
+        "interval": "",
+        "legendFormat": "{{ application }}",
+        "refId": "A"
+      }],
+      "thresholds": [{
           "$$hashKey": "object:222",
           "colorMode": "warning",
           "fill": true,
@@ -615,8 +595,7 @@
         "show": true,
         "values": []
       },
-      "yaxes": [
-        {
+      "yaxes": [{
           "$$hashKey": "object:167",
           "format": "short",
           "label": "",
@@ -683,15 +662,13 @@
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
-          "interval": "",
-          "legendFormat": "{{endpoint}}",
-          "refId": "A"
-        }
-      ],
+      "targets": [{
+        "exemplar": true,
+        "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
+        "interval": "",
+        "legendFormat": "{{endpoint}}",
+        "refId": "A"
+      }],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
@@ -710,8 +687,7 @@
         "show": true,
         "values": []
       },
-      "yaxes": [
-        {
+      "yaxes": [{
           "$$hashKey": "object:308",
           "format": "short",
           "label": null,
@@ -742,8 +718,8 @@
       "dashes": false,
       "datasource": null,
       "description": "",
-      "fill": 1,
-      "fillGradient": 0,
+      "fill": 2,
+      "fillGradient": 4,
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -764,7 +740,7 @@
         "values": true
       },
       "lines": true,
-      "linewidth": 1,
+      "linewidth": 3,
       "nullPointMode": "null",
       "options": {
         "alertThreshold": true
@@ -772,14 +748,13 @@
       "percentage": false,
       "pluginVersion": "8.0.6",
       "pointradius": 2,
-      "points": false,
+      "points": true,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
-      "targets": [
-        {
+      "targets": [{
           "exemplar": true,
           "expr": "sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\",responsecode=~\"$error\"}[$interval]))",
           "interval": "",
@@ -820,8 +795,7 @@
         "show": true,
         "values": []
       },
-      "yaxes": [
-        {
+      "yaxes": [{
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -849,8 +823,7 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [
-      {
+    "list": [{
         "allValue": null,
         "current": {
           "selected": true,
@@ -1034,8 +1007,7 @@
         "hide": 0,
         "label": "Interval",
         "name": "interval",
-        "options": [
-          {
+        "options": [{
             "selected": true,
             "text": "1m",
             "value": "1m"
@@ -1102,5 +1074,5 @@
   "timezone": "",
   "title": "My Web API Dashboard",
   "uid": "7LdPlUZnz",
-  "version": 5
+  "version": 6
 }
