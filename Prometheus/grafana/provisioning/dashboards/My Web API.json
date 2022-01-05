@@ -13,7 +13,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1630138073594,
+  "iteration": 1641378437371,
   "links": [],
   "panels": [{
       "collapsed": false,
@@ -816,6 +816,232 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "displayName": "API",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [{
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": -50
+              },
+              {
+                "color": "dark-yellow",
+                "value": -20
+              },
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 20
+              },
+              {
+                "color": "dark-green",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 38
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.0.6",
+      "targets": [{
+        "exemplar": true,
+        "expr": "(sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+        "interval": "",
+        "legendFormat": "{{application}}",
+        "refId": "A"
+      }],
+      "title": "API",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [{
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": -50
+              },
+              {
+                "color": "dark-yellow",
+                "value": -20
+              },
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 20
+              },
+              {
+                "color": "dark-green",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 43
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.0.6",
+      "targets": [{
+        "exemplar": true,
+        "expr": "(sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+        "interval": "",
+        "legendFormat": "{{application}}",
+        "refId": "A"
+      }],
+      "title": "Android",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [{
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": -50
+              },
+              {
+                "color": "dark-yellow",
+                "value": -20
+              },
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 20
+              },
+              {
+                "color": "dark-green",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.0.6",
+      "targets": [{
+        "exemplar": true,
+        "expr": "(sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+        "interval": "",
+        "legendFormat": "{{application}}",
+        "refId": "A"
+      }],
+      "title": "Website",
+      "type": "stat"
     }
   ],
   "refresh": "5s",
@@ -1074,5 +1300,5 @@
   "timezone": "",
   "title": "My Web API Dashboard",
   "uid": "7LdPlUZnz",
-  "version": 6
+  "version": 7
 }
