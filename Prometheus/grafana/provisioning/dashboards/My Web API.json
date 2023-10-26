@@ -1,23 +1,32 @@
 {
   "annotations": {
-    "list": [{
-      "builtIn": 1,
-      "datasource": "-- Grafana --",
-      "enable": true,
-      "hide": true,
-      "iconColor": "rgba(0, 211, 255, 1)",
-      "name": "Annotations & Alerts",
-      "type": "dashboard"
-    }]
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1641378437371,
   "links": [],
-  "panels": [{
+  "liveNow": false,
+  "panels": [
+    {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -26,11 +35,23 @@
       },
       "id": 11,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Row title",
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -61,8 +82,9 @@
           "value"
         ],
         "legend": {
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom",
+          "showLegend": false,
           "values": []
         },
         "pieType": "pie",
@@ -74,23 +96,33 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (instance)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))  / ignoring (instance) group_left sum (increase(application_request_counter[$interval])) * 100",
-        "instant": true,
-        "interval": "",
-        "legendFormat": "{{instance}}",
-        "refId": "A"
-      }],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "sum by (instance)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))  / ignoring (instance) group_left sum (increase(application_request_counter[$interval])) * 100",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
       "title": " Request Count By Service",
       "type": "piechart"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -121,8 +153,9 @@
           "value"
         ],
         "legend": {
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom",
+          "showLegend": false,
           "values": []
         },
         "pieType": "pie",
@@ -134,23 +167,33 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (application)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-        "instant": true,
-        "interval": "",
-        "legendFormat": "{{application}}",
-        "refId": "A"
-      }],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "sum by (application)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{application}}",
+          "refId": "A"
+        }
+      ],
       "title": " Request Count By Application",
       "type": "piechart"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -181,8 +224,9 @@
           "value"
         ],
         "legend": {
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom",
+          "showLegend": false,
           "values": []
         },
         "pieType": "pie",
@@ -194,24 +238,34 @@
           "values": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (endpoint) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-        "format": "time_series",
-        "instant": true,
-        "interval": "",
-        "legendFormat": "{{endpoint}}",
-        "refId": "A"
-      }],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (endpoint) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{endpoint}}",
+          "refId": "A"
+        }
+      ],
       "title": " Request Count By Endpoint",
       "type": "piechart"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -242,8 +296,9 @@
           "value"
         ],
         "legend": {
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom",
+          "showLegend": false,
           "values": []
         },
         "pieType": "pie",
@@ -255,24 +310,34 @@
           "values": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (service)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (service) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-        "format": "time_series",
-        "instant": true,
-        "interval": "",
-        "legendFormat": "{{endpoint}}",
-        "refId": "A"
-      }],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "sum by (service)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (service) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{endpoint}}",
+          "refId": "A"
+        }
+      ],
       "title": " Request Count By Service",
       "type": "piechart"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -303,8 +368,9 @@
           "value"
         ],
         "legend": {
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom",
+          "showLegend": false,
           "values": []
         },
         "pieType": "pie",
@@ -316,24 +382,35 @@
           "values": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (responsecode)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (responsecode) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-        "format": "time_series",
-        "instant": true,
-        "interval": "",
-        "legendFormat": "{{responsecode}}",
-        "refId": "A"
-      }],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum by (responsecode)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (responsecode) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{responsecode}}",
+          "refId": "A"
+        }
+      ],
       "title": " Request Count By HttpStatusCode",
       "type": "piechart"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -364,8 +441,9 @@
           "value"
         ],
         "legend": {
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom",
+          "showLegend": false,
           "values": []
         },
         "pieType": "pie",
@@ -377,25 +455,35 @@
           "values": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (application)(increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
-        "format": "time_series",
-        "instant": true,
-        "interval": "",
-        "legendFormat": "{{responsecode}}",
-        "refId": "A"
-      }],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "sum by (application)(increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{responsecode}}",
+          "refId": "A"
+        }
+      ],
       "title": " Request Percent in Mobile",
       "type": "piechart"
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -404,11 +492,23 @@
       },
       "id": 9,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Row title",
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -420,7 +520,8 @@
           "min": 0,
           "thresholds": {
             "mode": "absolute",
-            "steps": [{
+            "steps": [
+              {
                 "color": "green",
                 "value": null
               },
@@ -455,6 +556,8 @@
       "id": 16,
       "options": {
         "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -464,10 +567,16 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "8.0.6",
-      "targets": [{
+      "pluginVersion": "10.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": false,
           "expr": "sum (increase(application_request_counter{responsecode=\"200\"}[$interval])) / sum (increase(application_request_counter[$interval]))  * 100",
           "format": "time_series",
@@ -478,6 +587,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "application_httprequests_apdex * 100",
           "hide": false,
@@ -486,6 +599,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "100 - (avg(rate(application_httprequests_apdex{instance=~\"$instance\"}[$interval])) * 100)",
           "format": "heatmap",
@@ -504,7 +621,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fill": 2,
       "fillGradient": 4,
       "gridPos": {
@@ -534,23 +654,29 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "10.1.5",
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
-      "repeat": null,
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (application)  (rate(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / sum by (application) (rate(application_request_counter{responsecode=\"200\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
-        "interval": "",
-        "legendFormat": "{{ application }}",
-        "refId": "A"
-      }],
-      "thresholds": [{
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "sum by (application)  (rate(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / sum by (application) (rate(application_request_counter{responsecode=\"200\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
+          "interval": "",
+          "legendFormat": "{{ application }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
           "$$hashKey": "object:222",
           "colorMode": "warning",
           "fill": true,
@@ -578,9 +704,7 @@
           "yaxis": "left"
         }
       ],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Request Average Response Time",
       "tooltip": {
         "shared": true,
@@ -589,34 +713,27 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
-      "yaxes": [{
+      "yaxes": [
+        {
           "$$hashKey": "object:167",
           "format": "short",
           "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:168",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -624,7 +741,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fill": 2,
       "fillGradient": 4,
@@ -654,7 +774,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "10.1.5",
       "pointradius": 1,
       "points": true,
       "renderer": "flot",
@@ -662,17 +782,21 @@
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
-      "targets": [{
-        "exemplar": true,
-        "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
-        "interval": "",
-        "legendFormat": "{{endpoint}}",
-        "refId": "A"
-      }],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
+          "interval": "",
+          "legendFormat": "{{endpoint}}",
+          "refId": "A"
+        }
+      ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Endpoint Request Count",
       "tooltip": {
         "shared": true,
@@ -681,34 +805,26 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
-      "yaxes": [{
+      "yaxes": [
+        {
           "$$hashKey": "object:308",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:309",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -716,7 +832,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fill": 2,
       "fillGradient": 4,
@@ -746,7 +865,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "10.1.5",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -754,7 +873,12 @@
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
-      "targets": [{
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\",responsecode=~\"$error\"}[$interval]))",
           "interval": "",
@@ -762,6 +886,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "sum (increase(application_request_counter{endpoint!=\"\",responsecode=\"200\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\",responsecode=~\"$error\"}[$interval]))",
           "hide": false,
@@ -770,6 +898,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "sum (increase(application_request_counter{endpoint!=\"\",responsecode!=\"200\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\",responsecode=~\"$error\"}[1m]))",
           "hide": false,
           "interval": "",
@@ -778,9 +910,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Endpoint Request Error Count",
       "tooltip": {
         "shared": true,
@@ -789,36 +919,31 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
-      "yaxes": [{
+      "yaxes": [
+        {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -830,7 +955,8 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [{
+            "steps": [
+              {
                 "color": "green",
                 "value": null
               },
@@ -882,19 +1008,28 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "(sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
-        "interval": "",
-        "legendFormat": "{{application}}",
-        "refId": "A"
-      }],
+      "pluginVersion": "10.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "(sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+          "interval": "",
+          "legendFormat": "{{application}}",
+          "refId": "A"
+        }
+      ],
       "title": "API",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -905,7 +1040,8 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [{
+            "steps": [
+              {
                 "color": "green",
                 "value": null
               },
@@ -957,19 +1093,28 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "(sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
-        "interval": "",
-        "legendFormat": "{{application}}",
-        "refId": "A"
-      }],
+      "pluginVersion": "10.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "(sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+          "interval": "",
+          "legendFormat": "{{application}}",
+          "refId": "A"
+        }
+      ],
       "title": "Android",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -980,7 +1125,8 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [{
+            "steps": [
+              {
                 "color": "green",
                 "value": null
               },
@@ -1032,25 +1178,31 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.6",
-      "targets": [{
-        "exemplar": true,
-        "expr": "(sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
-        "interval": "",
-        "legendFormat": "{{application}}",
-        "refId": "A"
-      }],
+      "pluginVersion": "10.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "(sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+          "interval": "",
+          "legendFormat": "{{application}}",
+          "refId": "A"
+        }
+      ],
       "title": "Website",
       "type": "stat"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 30,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [{
-        "allValue": null,
+    "list": [
+      {
         "current": {
           "selected": true,
           "text": [
@@ -1060,10 +1212,11 @@
             "$__all"
           ]
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(instance)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Instance",
@@ -1074,7 +1227,7 @@
           "query": "label_values(instance)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -1084,7 +1237,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -1094,10 +1246,11 @@
             "$__all"
           ]
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(endpoint)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Endpoint",
@@ -1108,7 +1261,7 @@
           "query": "label_values(endpoint)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -1118,7 +1271,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -1128,10 +1280,11 @@
             "$__all"
           ]
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(application)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Application",
@@ -1142,7 +1295,7 @@
           "query": "label_values(application)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -1152,7 +1305,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -1162,10 +1314,11 @@
             "$__all"
           ]
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(service)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "External Service",
@@ -1176,7 +1329,7 @@
           "query": "label_values(service)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1186,7 +1339,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -1196,10 +1348,11 @@
             "$__all"
           ]
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(responsecode)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Http Status",
@@ -1210,7 +1363,7 @@
           "query": "label_values(responsecode)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -1228,12 +1381,11 @@
           "text": "1m",
           "value": "1m"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "label": "Interval",
         "name": "interval",
-        "options": [{
+        "options": [
+          {
             "selected": true,
             "text": "1m",
             "value": "1m"
@@ -1300,5 +1452,6 @@
   "timezone": "",
   "title": "My Web API Dashboard",
   "uid": "7LdPlUZnz",
-  "version": 7
+  "version": 1,
+  "weekStart": ""
 }
