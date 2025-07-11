@@ -184,11 +184,11 @@
           "expr": "sum by (client)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / ignoring (client) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) * 100",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{application}}",
+          "legendFormat": "{{client}}",
           "refId": "A"
         }
       ],
-      "title": " Request Count By Application",
+      "title": " Request Count By client",
       "type": "piechart"
     },
     {
@@ -678,7 +678,7 @@
           "exemplar": true,
           "expr": "sum by (client)  (increase(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / sum by (client) (increase(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval]))",
           "interval": "",
-          "legendFormat": "{{ application }}",
+          "legendFormat": "{{ client }}",
           "range": true,
           "refId": "A"
         }
@@ -1035,7 +1035,7 @@
           "exemplar": true,
           "expr": "(sum by (client) (increase(application_request_counter{client=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) - sum by (client) (increase(application_request_counter{client=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (client) (increase(application_request_counter{client=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
           "interval": "",
-          "legendFormat": "{{application}}",
+          "legendFormat": "{{client}}",
           "range": true,
           "refId": "A"
         }
@@ -1119,9 +1119,9 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "(sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+          "expr": "(sum by (client) (increase(application_request_counter{client=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) - sum by (client) (increase(application_request_counter{client=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (client) (increase(application_request_counter{client=\"Android\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
           "interval": "",
-          "legendFormat": "{{application}}",
+          "legendFormat": "{{client}}",
           "refId": "A"
         }
       ],
@@ -1204,9 +1204,9 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "(sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+          "expr": "(sum by (client) (increase(application_request_counter{client=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) - sum by (client) (increase(application_request_counter{client=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (client) (increase(application_request_counter{client=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
           "interval": "",
-          "legendFormat": "{{application}}",
+          "legendFormat": "{{client}}",
           "refId": "A"
         }
       ],
