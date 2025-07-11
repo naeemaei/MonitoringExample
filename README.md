@@ -15,7 +15,7 @@ If you like this repo or found it helpful, please give it a star. Thanks!
 ### 1. [Up docker compose file](https://github.com/naeemaei/MonitoringExample/blob/master/Prometheus/docker-compose.yml)
 Run this command from project root directory:
 ```
-docker-compose -f "Prometheus\docker-compose.yml" up -d --build
+docker-compose -f Prometheus/docker-compose.yml up -d --build
 ```
 If you are sure that this command is successfully executed, go to the next step
 
