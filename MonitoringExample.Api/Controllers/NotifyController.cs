@@ -10,15 +10,8 @@ namespace MonitoringExample.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class NotifyController : ControllerBase
+    public class NotifyController(ILogger<NotifyController> logger) : ControllerBase
     {
-        private readonly ILogger<NotifyController> _logger;
-        public NotifyController(ILogger<NotifyController> logger)
-        {
-            _logger = logger;
-
-        }
-
         [HttpPost("send")]
         public async Task<IActionResult> SendNotify(MonitoringAlertDto request)
         {
@@ -36,8 +29,8 @@ namespace MonitoringExample.Api.Controllers
                     + "ساعت: " + startTime + "\n"
                     + "Title: " + alertName + "\n"
                     + item.Annotations.Summary;
-                _logger.LogInformation(DateTime.UtcNow.ToString("yyyy/MM/dd hh:mm:ss"));
-                _logger.LogInformation(message);
+                logger.LogInformation(DateTime.UtcNow.ToString("yyyy/MM/dd hh:mm:ss"));
+                logger.LogInformation(message);
                 //TODO : send alert as SMS, Whatsapp /* "https://api.callmebot.com/" */ or Telegram 
             }
             return Ok("Success");

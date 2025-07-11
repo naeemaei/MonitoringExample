@@ -1,11 +1,8 @@
-public class MetricConfig
+public record MetricConfig
 {
-    private MetricConfig()
-    {
-    }
-    public static MetricConfig Instance { get; protected set; } = new MetricConfig();
-
+    public const string Key = nameof(MetricConfig);
     public float ErrorPercent { get; set; }
+    public bool Enabled { get; set; }
     public int AverageResponseTime { get; set; }
     public int MetricPerSecond { get; set; }
 }

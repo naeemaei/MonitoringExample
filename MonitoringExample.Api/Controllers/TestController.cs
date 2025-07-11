@@ -12,17 +12,8 @@ namespace MonitoringExample.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TestController : ControllerBase
+    public class TestController(ILogger<TestController> logger, MetricsRegistry metricsRegistry) : ControllerBase
     {
-
-        private readonly ILogger<TestController> _logger;
-        private readonly MetricsRegistry _metricsRegistry;
-
-        public TestController(ILogger<TestController> logger, MetricsRegistry metricsRegistry)
-        {
-            _logger = logger;
-            _metricsRegistry = metricsRegistry;
-        }
 
         /// <summary>
         /// Generate sample data for use in monitoring
@@ -33,7 +24,6 @@ namespace MonitoringExample.Api.Controllers
         [HttpGet("Monitoring/GenerateTestData/{count}/{seconds}")]
         public async Task<IActionResult> GenerateMetricsTestData(int count, int seconds)
         {
-
             await Task.Yield();
 
             _ = Parallel.For(0, count, delegate (int requestCount)
@@ -41,7 +31,7 @@ namespace MonitoringExample.Api.Controllers
             {
                 for (int second = 0; second < seconds; second++)
                 {
-                    var application = ((Client)Extension.RandomGenerator(1, 5));
+                    var application = (Client)Extension.RandomGenerator(1, 5);
 
                     var endpoint = (Endpoints)Extension.RandomGenerator(1, 4);
 
@@ -58,7 +48,9 @@ namespace MonitoringExample.Api.Controllers
                         { nameof(service), service.GetDescription() },
                     };
 
-                    Task.Run(() => _metricsRegistry.RegisterMetrics((int)statusCode, responseTime, labels).ConfigureAwait(false));
+                    metricsRegistry.IncreaseRequestCounter((int)statusCode, application.GetDescription(), endpoint.GetDescription(), service.GetDescription());
+
+                    metricsRegistry.SetRequestDuration((int)statusCode, application.GetDescription(), endpoint.GetDescription(), service.GetDescription(), responseTime);
 
                     Thread.Sleep(1000);
                 }

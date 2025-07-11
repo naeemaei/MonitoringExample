@@ -13,16 +13,8 @@ namespace MonitoringExample.Api.Monitoring
         void GenerateMetricsTestData(int count, int seconds);
     }
 
-    public class MetricTestDataGenerator : IMetricDataGenerator
+    public class MetricTestDataGenerator(MetricsRegistry metricsRegistry, ILogger<MetricTestDataGenerator> logger) : IMetricDataGenerator
     {
-        private readonly MetricsRegistry _metricsRegistry;
-        private readonly ILogger<MetricTestDataGenerator> _logger;
-
-        public MetricTestDataGenerator(MetricsRegistry metricsRegistry, ILogger<MetricTestDataGenerator> logger)
-        {
-            _metricsRegistry = metricsRegistry;
-            _logger = logger;
-        }
         public void GenerateMetricsTestData(int count, int seconds)
         {
             var temp1 = Extension.RandomGenerator(Constants.MinNum, Constants.MidNum);
@@ -38,8 +30,8 @@ namespace MonitoringExample.Api.Monitoring
             {
                 for (int second = 0; second < seconds; second++)
                 {
-                    _logger.LogInformation($"Start of second: {second}, iterate: {requestCount}");
-                    var application = ((Client)Extension.RandomGenerator(1, 5));
+                    logger.LogInformation($"Start of second: {second}, iterate: {requestCount}");
+                    var application = (Client)Extension.RandomGenerator(1, 5);
 
                     var endpoint = Extension.GenerateRandomEndpoint();
 
@@ -56,10 +48,12 @@ namespace MonitoringExample.Api.Monitoring
                         { nameof(service), service.GetDescription() },
                     };
 
-                    Task.Run(() => _metricsRegistry.RegisterMetrics((int)statusCode, responseTime, labels).ConfigureAwait(false));
+                    metricsRegistry.IncreaseRequestCounter((int)statusCode, application.GetDescription(), endpoint.GetDescription(), service.GetDescription());
+
+                    metricsRegistry.SetRequestDuration((int)statusCode, application.GetDescription(), endpoint.GetDescription(), service.GetDescription(), responseTime);
 
                     Thread.Sleep(1000);
-                    _logger.LogInformation($"End of second: {second}, iterate: {requestCount}");
+                    logger.LogInformation($"End of second: {second}, iterate: {requestCount}");
 
                 }
             });

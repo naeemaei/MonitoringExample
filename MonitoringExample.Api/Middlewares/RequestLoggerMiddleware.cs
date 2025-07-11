@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MonitoringExample.Api.Enums;
+using MonitoringExample.Api.Extensions;
 using MonitoringExample.Api.Monitoring;
 using System;
 using System.Collections.Generic;
@@ -12,27 +14,15 @@ using System.Threading.Tasks;
 
 namespace MonitoringExample.Api.Middlewares
 {
-    public class RequestLoggerMiddleware
+    public class RequestLoggerMiddleware(RequestDelegate next, ILogger<RequestLoggerMiddleware> logger)
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<RequestLoggerMiddleware> _logger;
-        private MetricsRegistry _metricsRegistry;
         private Stopwatch timer = new();
 
-        public RequestLoggerMiddleware(RequestDelegate next, ILogger<RequestLoggerMiddleware> logger)
+        public async Task InvokeAsync(HttpContext context, IConfiguration configuration, MetricsRegistry metricsRegistry, IOptionsMonitor<MetricConfig> metricConfig)
         {
-            _next = next;
-            _logger = logger;
-
-        }
-
-        public async Task InvokeAsync(HttpContext context, IConfiguration configuration, MetricsRegistry metricsRegistry)
-        {
-            _metricsRegistry = metricsRegistry;
             timer.Start();
-            var status = configuration.GetValue<bool>("RegisterMetricsStatus");
-            if (Ignore(context) || !status)
-                await _next.Invoke(context);
+            if (Ignore(context) || !metricConfig.CurrentValue.Enabled)
+                await next.Invoke(context);
             else
             {
                 string response = string.Empty;
@@ -44,7 +34,7 @@ namespace MonitoringExample.Api.Middlewares
                     using var bodyStream = new MemoryStream();
                     context.Response.Body = bodyStream;
 
-                    await _next.Invoke(context);
+                    await next.Invoke(context);
 
                     response = await FormatResponse(bodyStream);
                     await bodyStream.CopyToAsync(originalBodyStream);
@@ -52,7 +42,7 @@ namespace MonitoringExample.Api.Middlewares
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError($"{ex?.StackTrace}");
+                    logger.LogError($"{ex?.StackTrace}");
                 }
                 finally
                 {
@@ -62,7 +52,7 @@ namespace MonitoringExample.Api.Middlewares
                     {
                         if (Convert.ToBoolean(value))
                         {
-                            service = (ExternalServices)Extensions.Extension.RandomGenerator(1, 3);
+                            service = (ExternalServices)Extension.RandomGenerator(1, 3);
                         }
                     }
 
@@ -78,7 +68,10 @@ namespace MonitoringExample.Api.Middlewares
                         { "service", service },
                     };
 
-                    await _metricsRegistry.RegisterMetrics(context.Response.StatusCode, timer.ElapsedMilliseconds, labels);
+                    metricsRegistry.IncreaseRequestCounter(context.Response.StatusCode, app.GetDescription(), context.Request.RouteValues["action"].ToString(), service.GetDescription());
+
+                    metricsRegistry.SetRequestDuration(context.Response.StatusCode, app.GetDescription(), context.Request.RouteValues["action"].ToString(), service.GetDescription(), timer.ElapsedMilliseconds);
+
                 }
             }
         }
@@ -91,7 +84,7 @@ namespace MonitoringExample.Api.Middlewares
                 request.EnableBuffering();
 
                 var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-                await request.Body.ReadAsync(buffer, 0, buffer.Length);
+                await request.Body.ReadExactlyAsync(buffer);
                 bodyAsText = Encoding.UTF8.GetString(buffer);
 
             }

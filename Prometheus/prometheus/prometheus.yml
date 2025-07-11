@@ -57,7 +57,7 @@ scrape_configs:
           - "tasks.web-api"
         type: "A"
         port: 8008
-    metrics_path: /metrics-text
+    metrics_path: /metrics
     scheme: http
     static_configs:
       - targets: ["ex1-web-api:80", "ex2-web-api:80"]

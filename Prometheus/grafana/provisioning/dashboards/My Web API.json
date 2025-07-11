@@ -107,8 +107,9 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (instance)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))  / ignoring (instance) group_left sum (increase(application_request_counter[$interval])) * 100",
+          "expr": "sum by (instance)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval]))  / ignoring (instance) group_left sum (increase(application_request_counter[$interval])) * 100",
           "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
@@ -178,8 +179,9 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (application)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "expr": "sum by (client)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / ignoring (client) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) * 100",
           "instant": true,
           "interval": "",
           "legendFormat": "{{application}}",
@@ -249,8 +251,9 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (endpoint) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / ignoring (endpoint) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) * 100",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -321,8 +324,9 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (service)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (service) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "expr": "sum by (service)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / ignoring (service) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) * 100",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -395,11 +399,11 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (responsecode)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (responsecode) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "expr": "sum by (response_code)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / ignoring (response_code) group_left sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) * 100",
           "format": "time_series",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{responsecode}}",
+          "legendFormat": "{{response_code}}",
           "refId": "A"
         }
       ],
@@ -466,12 +470,13 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (application)(increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / ignoring (application) group_left sum (increase(application_request_counter{application!=\"API\",application!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) * 100",
+          "expr": "sum by (client)(increase(application_request_counter{client!=\"API\",client!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / ignoring (client) group_left sum (increase(application_request_counter{client!=\"API\",client!=\"Website\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) * 100",
           "format": "time_series",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{responsecode}}",
+          "legendFormat": "{{response_code}}",
           "refId": "A"
         }
       ],
@@ -570,20 +575,21 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "sum (increase(application_request_counter{responsecode=\"200\"}[$interval])) / sum (increase(application_request_counter[$interval]))  * 100",
+          "expr": "sum (increase(application_request_counter{response_code=\"200\"}[$interval])) / sum (increase(application_request_counter[$interval]))  * 100",
           "format": "time_series",
-          "hide": true,
+          "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "{{responsecode}}",
+          "legendFormat": "{{response_code}}",
           "refId": "A"
         },
         {
@@ -593,7 +599,7 @@
           },
           "exemplar": true,
           "expr": "application_httprequests_apdex * 100",
-          "hide": false,
+          "hide": true,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "B"
@@ -654,7 +660,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.0.1",
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
@@ -668,10 +674,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (application)  (rate(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) / sum by (application) (rate(application_request_counter{responsecode=\"200\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
+          "expr": "sum by (client)  (increase(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) / sum by (client) (increase(application_request_duration{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval]))",
           "interval": "",
           "legendFormat": "{{ application }}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -774,7 +782,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.0.1",
       "pointradius": 1,
       "points": true,
       "renderer": "flot",
@@ -788,10 +796,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval]))",
+          "expr": "sum by (endpoint)(increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval]))",
           "interval": "",
           "legendFormat": "{{endpoint}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -865,7 +875,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.0.1",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -879,10 +889,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\",responsecode=~\"$error\"}[$interval]))",
+          "expr": "sum (increase(application_request_counter{endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\",response_code=~\"$error\"}[$interval]))",
           "interval": "",
           "legendFormat": "Total Requests",
+          "range": true,
           "refId": "A"
         },
         {
@@ -890,11 +902,13 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum (increase(application_request_counter{endpoint!=\"\",responsecode=\"200\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\",responsecode=~\"$error\"}[$interval]))",
+          "expr": "sum (increase(application_request_counter{endpoint!=\"\",response_code=\"200\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\",response_code=~\"$error\"}[$interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Successful Requests ",
+          "range": true,
           "refId": "B"
         },
         {
@@ -902,10 +916,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum (increase(application_request_counter{endpoint!=\"\",responsecode!=\"200\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\",responsecode=~\"$error\"}[1m]))",
+          "editorMode": "code",
+          "expr": "sum (increase(application_request_counter{endpoint!=\"\",response_code!=\"200\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\",response_code=~\"$error\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Not Successful Requests",
+          "range": true,
           "refId": "C"
         }
       ],
@@ -1008,17 +1024,19 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "(sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval])) - sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (application) (increase(application_request_counter{application=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",application=~\"$application\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
+          "expr": "(sum by (client) (increase(application_request_counter{client=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval])) - sum by (client) (increase(application_request_counter{client=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h))) / sum by (client) (increase(application_request_counter{client=\"API\",endpoint!=\"\",endpoint=~\"$endpoint\",client=~\"$client\",service=~\"$externalservice\"}[$interval] offset 1h)) * 100",
           "interval": "",
           "legendFormat": "{{application}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1093,7 +1111,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1178,7 +1196,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.1.5",
+      "pluginVersion": "10.0.1",
       "targets": [
         {
           "datasource": {
@@ -1284,16 +1302,16 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "label_values(application)",
+        "definition": "label_values(client)",
         "hide": 0,
         "includeAll": true,
-        "label": "Application",
+        "label": "client",
         "multi": true,
-        "name": "application",
+        "name": "client",
         "options": [],
         "query": {
-          "query": "label_values(application)",
-          "refId": "StandardVariableQuery"
+          "query": "label_values(client)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
         "regex": "",
@@ -1333,40 +1351,6 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
-        },
-        "definition": "label_values(responsecode)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Http Status",
-        "multi": true,
-        "name": "error",
-        "options": [],
-        "query": {
-          "query": "label_values(responsecode)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1441,11 +1425,38 @@
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "definition": "label_values(response_code)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Http Status",
+        "multi": true,
+        "name": "error",
+        "options": [],
+        "query": {
+          "query": "label_values(response_code)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},

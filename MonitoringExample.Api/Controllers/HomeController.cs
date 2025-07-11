@@ -7,18 +7,8 @@ namespace MonitoringExample.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class HomeController : ControllerBase
+    public class HomeController(ILogger<TestController> logger, MetricsRegistry metricsRegistry) : ControllerBase
     {
-
-        private readonly ILogger<TestController> _logger;
-        private readonly MetricsRegistry _metricsRegistry;
-
-        public HomeController(ILogger<TestController> logger, MetricsRegistry metricsRegistry)
-        {
-            _logger = logger;
-            _metricsRegistry = metricsRegistry;
-        }
-
         [HttpGet("search")]
         public IActionResult Search([FromQuery] Client application, [FromQuery] bool getFromExternalService)
         {

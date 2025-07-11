@@ -55,7 +55,7 @@ namespace MonitoringExample.Api.Extensions
 
         internal static HttpStatusCode GenerateRandomStatusCode(int requestCount, ExternalServices service)
         {
-            var errorPercent = MetricConfig.Instance.ErrorPercent;
+            var errorPercent = 10.0;
             var randPercent = RandomGenerator(Constants.MinNum, Constants.MaxNum);
             var temp1 = RandomGenerator(Constants.MinNum, Constants.MidNum);
             var temp2 = RandomGenerator(Constants.MinNum, Constants.MidNum);
@@ -76,7 +76,7 @@ namespace MonitoringExample.Api.Extensions
 
         internal static int GenerateRandomResponseTime()
         {
-            var averageResponseTime = MetricConfig.Instance.AverageResponseTime;
+            var averageResponseTime = 100;
             // Generate two random number and distribute responseTime based this two numbers
             var temp1 = RandomGenerator(Constants.MinNum, Constants.MidNum);
             var temp2 = RandomGenerator(Constants.MinNum, Constants.MidNum);

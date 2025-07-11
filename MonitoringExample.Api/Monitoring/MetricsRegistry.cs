@@ -1,59 +1,34 @@
-﻿using App.Metrics;
-using App.Metrics.Counter;
-using App.Metrics.Gauge;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Prometheus;
 
 namespace MonitoringExample.Api.Monitoring
 {
-    public class MetricsRegistry
+    public class MetricsRegistry(IOptionsMonitor<MetricConfig> metricConfig, ILogger<MetricsRegistry> logger)
     {
-        private readonly ILogger<MetricsRegistry> _logger;
 
-        private IConfiguration _configuration { get; }
-        private IMetricsManager _metricsManager { get; }
-        private ICodeService _codeService { get; }
-
-        private bool RegisterMetricsStatus { get; }
-
-        public MetricsRegistry(IConfiguration configuration, ILogger<MetricsRegistry> logger, IMetricsManager metricsManager, ICodeService codeService)
+        private static Counter RequestCounter = Metrics.CreateCounter("application_request_counter", "Request Counter", configuration: new CounterConfiguration
         {
-            _configuration = configuration;
-            _logger = logger;
-            _metricsManager = metricsManager;
-            _codeService = codeService;
-            RegisterMetricsStatus = _configuration.GetValue<bool>("RegisterMetricsStatus");
+            LabelNames = ["response_code", "client", "endpoint", "service"]
+        });
+        private static Gauge RequestDuration = Metrics.CreateGauge("application_request_duration", "Request Duration", configuration: new GaugeConfiguration
+        {
+            LabelNames = ["response_code", "client", "endpoint", "service"]
+        });
+
+        public void IncreaseRequestCounter(int responseCode, string client, string endpoint, string service)
+        {
+            if (metricConfig.CurrentValue.Enabled)
+            {
+                RequestCounter.WithLabels(responseCode.ToString(), client, endpoint, service).Inc();
+            }
         }
 
-
-        public static CounterOptions RequestCounter => new()
+        public void SetRequestDuration(int responseCode, string client, string endpoint, string service, double duration)
         {
-            Name = "Request Counter",
-            MeasurementUnit = Unit.None
-        };
-
-        public static GaugeOptions RequestDuration => new()
-        {
-            Name = "Request Duration",
-            MeasurementUnit = Unit.Calls
-        };
-
-        public async Task RegisterMetrics(int responseCode, long responseTime, Dictionary<string, object> labels)
-        {
-            if (RegisterMetricsStatus)
+            if (metricConfig.CurrentValue.Enabled)
             {
-                await _codeService.ExecuteAsync(async () =>
-                {
-                    await Task.Yield();
-                    _metricsManager.Increment(RequestCounter, responseCode, labels);
-                    _metricsManager.SetValue(RequestDuration, labels, responseTime);
-                }, edi =>
-                {
-                    _logger.LogError($"Exception in register metrics: {edi?.SourceException?.Message} *** {edi?.SourceException?.StackTrace}");
-                    return Task.CompletedTask;
-                });
+                RequestDuration.WithLabels(responseCode.ToString(), client, endpoint, service).Set(duration);
             }
         }
 

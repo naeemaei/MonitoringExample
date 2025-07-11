@@ -12,13 +12,13 @@ networks:
 
 services:
   ex1-web-api:
-    image: monitoringexample:dev
+    image: monitoringexample:latest
     ports:
       - 8008:80
     networks:
       - back-tier
   ex2-web-api:
-    image: monitoringexample:dev
+    image: monitoringexample:latest
     ports:
       - 8009:80
     networks:
@@ -36,12 +36,8 @@ services:
     ports:
       - 9090:9090
     links:
-      - cadvisor:cadvisor
       - alertmanager:alertmanager
     #      - pushgateway:pushgateway
-    depends_on:
-      - cadvisor
-    #      - pushgateway
     networks:
       - back-tier
     restart: always
@@ -85,23 +81,9 @@ services:
   #      placement:
   #        constraints:
   #          - node.hostname == ${HOSTNAME}
-  cadvisor:
-    image: google/cadvisor
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-    ports:
-      - 8080:8080
-    networks:
-      - back-tier
-    restart: always
-    deploy:
-      mode: global
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     user: "472"
     depends_on:
       - prometheus
